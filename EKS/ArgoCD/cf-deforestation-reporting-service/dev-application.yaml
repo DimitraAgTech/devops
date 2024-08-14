@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cf-deforestation-reporting-service
+spec:
+  destination:
+    namespace: cf-deforestation-reporting-service
+    server: https://kubernetes.default.svc
+  source:
+    path: EKS/ArgoCD/cf-deforestation-reporting-service
+    repoURL: https://github.com/DimitraAgTech/devops
+    targetRevision: main
+    helm:
+      valueFiles:
+        - dev-values.yaml
+  project: default
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+  namespaceResource:
+    manifests:
+      - apiVersion: v1
+        kind: Namespace
+        metadata:
+          name: cf-deforestation-reporting-service
