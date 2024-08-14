@@ -1,5 +1,5 @@
 apiVersion: v2
-name: CF_Deforestation_Reporting_Service
+name: cf-deforestation-reporting-service
 description: A Helm chart for Kubernetes
 
 # A chart can be either an 'application' or a 'library' chart.

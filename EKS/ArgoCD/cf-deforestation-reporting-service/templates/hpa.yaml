@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "CF_Deforestation_Reporting_Service.fullname" . }}
+  name: {{ include "cf-deforestation-reporting-service.fullname" . }}
   labels:
-    {{- include "CF_Deforestation_Reporting_Service.labels" . | nindent 4 }}
+    {{- include "cf-deforestation-reporting-service.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "CF_Deforestation_Reporting_Service.fullname" . }}
+    name: {{ include "cf-deforestation-reporting-service.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
