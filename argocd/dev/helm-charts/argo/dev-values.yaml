@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: 495454422438.dkr.ecr.us-west-1.amazonaws.com/argo
+  repository: 495454422438.dkr.ecr.us-west-1.amazonaws.com/cf-deforestation-reporting-service
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "183f5e1"
