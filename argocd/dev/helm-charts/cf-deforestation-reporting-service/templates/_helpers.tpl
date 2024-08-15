@@ -26,8 +26,6 @@ Common labels
 */}}
 {{- define "cf-deforestation-reporting-service.labels" -}}
 helm.sh/chart: {{ include "cf-deforestation-reporting-service.chart" . }}
-# meta.helm.sh/release-name: {{ include "cf-deforestation-reporting-service.name" . }}
-# meta.helm.sh/release-namespace: {{ include "cf-deforestation-reporting-service.name" . }} 
 {{ include "cf-deforestation-reporting-service.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
