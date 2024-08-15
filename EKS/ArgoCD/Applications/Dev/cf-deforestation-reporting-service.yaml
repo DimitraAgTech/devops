@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: cf-deforestation-reporting-service
+  namespace: argocd
 spec:
   destination:
     namespace: cf-deforestation-reporting-service
@@ -13,15 +14,8 @@ spec:
     helm:
       valueFiles:
         - dev-values.yaml
-      releaseName: cf-deforestation-reporting-service
   project: default
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-  namespaceResource:
-    manifests:
-      - apiVersion: v1
-        kind: Namespace
-        metadata:
-          name: cf-deforestation-reporting-service
