@@ -34,7 +34,7 @@ spec:
     namespace: argocd
     server: https://kubernetes.default.svc
   source:
-    path: EKS/ArgoCD/Applications/Dev
+    path: argocd/dev/applications
     repoURL: https://github.com/DimitraAgTech/devops
     targetRevision: main
   project: dev
