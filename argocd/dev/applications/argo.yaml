@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo
+  namespace: argocd
+spec:
+  destination:
+    namespace: argo
+    server: https://kubernetes.default.svc
+  source:
+    path: argocd/dev/helm-charts/argo
+    repoURL: https://github.com/DimitraAgTech/devops
+    targetRevision: main
+    helm:
+      valueFiles:
+        - dev-values.yaml
+  project: dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

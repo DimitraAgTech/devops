@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "cf-deforestation-reporting-service.name" -}}
+{{- define "argo.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,23 +10,23 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "cf-deforestation-reporting-service.fullname" -}}
+{{- define "argo.fullname" -}}
 {{- default .Chart.Name .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "cf-deforestation-reporting-service.chart" -}}
+{{- define "argo.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "cf-deforestation-reporting-service.labels" -}}
-helm.sh/chart: {{ include "cf-deforestation-reporting-service.chart" . }}
-{{ include "cf-deforestation-reporting-service.selectorLabels" . }}
+{{- define "argo.labels" -}}
+helm.sh/chart: {{ include "argo.chart" . }}
+{{ include "argo.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -36,17 +36,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "cf-deforestation-reporting-service.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "cf-deforestation-reporting-service.name" . }}
+{{- define "argo.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "argo.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "cf-deforestation-reporting-service.serviceAccountName" -}}
+{{- define "argo.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "cf-deforestation-reporting-service.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "argo.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
