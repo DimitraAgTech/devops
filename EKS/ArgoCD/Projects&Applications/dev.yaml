@@ -1,0 +1,44 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: dev
+  namespace: argocd
+spec:
+  description: "Development project for managing applications."
+  sourceRepos:
+    - https://github.com/DimitraAgTech/devops
+  destinations:
+    - namespace: '*'
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  namespaceResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  roles:
+    - name: admin
+      description: "Full access to the dev project."
+      policies:
+        - p, proj:dev:admin, applications, *, dev/*, allow
+      groups:
+        - dev-admins
+--- 
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dev-applications
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  source:
+    path: EKS/ArgoCD/Applications/Dev
+    repoURL: https://github.com/DimitraAgTech/devops
+    targetRevision: main
+  project: dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

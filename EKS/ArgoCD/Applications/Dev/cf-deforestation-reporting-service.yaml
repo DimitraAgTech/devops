@@ -14,7 +14,7 @@ spec:
     helm:
       valueFiles:
         - dev-values.yaml
-  project: default
+  project: dev
   syncPolicy:
     automated:
       prune: true
