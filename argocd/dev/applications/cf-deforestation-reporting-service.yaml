@@ -8,7 +8,7 @@ spec:
     namespace: cf-deforestation-reporting-service
     server: https://kubernetes.default.svc
   source:
-    path: argocd/dev/applications/cf-deforestation-reporting-service
+    path: argocd/dev/helm-charts/cf-deforestation-reporting-service
     repoURL: https://github.com/DimitraAgTech/devops
     targetRevision: main
     helm:
