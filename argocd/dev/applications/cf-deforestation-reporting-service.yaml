@@ -1,21 +1,21 @@
-# apiVersion: argoproj.io/v1alpha1
-# kind: Application
-# metadata:
-#   name: cf-deforestation-reporting-service
-#   namespace: argocd
-# spec:
-#   destination:
-#     namespace: cf-deforestation-reporting-service
-#     server: https://kubernetes.default.svc
-#   source:
-#     path: argocd/dev/helm-charts/cf-deforestation-reporting-service
-#     repoURL: https://github.com/DimitraAgTech/devops
-#     targetRevision: main
-#     helm:
-#       valueFiles:
-#         - dev-values.yaml
-#   project: dev
-#   syncPolicy:
-#     automated:
-#       prune: true
-#       selfHeal: true
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cf-deforestation-reporting-service
+  namespace: argocd
+spec:
+  destination:
+    namespace: cf-deforestation-reporting-service
+    server: https://kubernetes.default.svc
+  source:
+    path: argocd/dev/helm-charts/cf-deforestation-reporting-service
+    repoURL: https://github.com/DimitraAgTech/devops
+    targetRevision: main
+    helm:
+      valueFiles:
+        - dev-values.yaml
+  project: dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

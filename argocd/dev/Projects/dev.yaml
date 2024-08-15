@@ -23,6 +23,11 @@ spec:
         - p, proj:dev:admin, applications, *, dev/*, allow
       groups:
         - dev-admins
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
 --- 
 apiVersion: argoproj.io/v1alpha1
 kind: Application
