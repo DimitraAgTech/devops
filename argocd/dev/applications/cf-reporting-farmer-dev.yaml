@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: cf-reporting-farmer-dev
-  namespace: cf-reporting-farmer
+  namespace: cf-reporting-dev
 spec:
   destination:
     namespace: argo
