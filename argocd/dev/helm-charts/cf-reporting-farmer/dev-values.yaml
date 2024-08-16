@@ -26,3 +26,15 @@ configMap:
   fileLocation: /src/.env
   subPath: .env
   
+
+ingress:
+  name: cfd-reporting-farmer-dev-ingress
+  annotations: 
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/group.name: dimitra-dev
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-west-1:495454422438:certificate/2fb9804e-a747-4518-a496-9572d5de4ae6
+    alb.ingress.kubernetes.io/backend-protocol: HTTP
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}'
+  hostName: cf-reporting-dev.dimitra.dev
