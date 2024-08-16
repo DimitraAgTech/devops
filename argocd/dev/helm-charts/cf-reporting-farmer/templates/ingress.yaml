@@ -25,4 +25,4 @@ spec:
               service:
                 name: {{ .Values.deployment.name }}
                 port:
-                  number: {{ .Values.service.port }}
+                  number: {{ .Values.deployment.containerPort }}

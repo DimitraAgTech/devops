@@ -2,23 +2,24 @@ deployment:
   name: cf-reporting-farmer-dev
   namespace: cf-reporting-dev
   replicaCount: 1
-  containerName: cf-reporting-farmer-dev
   image: 495454422438.dkr.ecr.us-west-1.amazonaws.com/cf-reporting-farmer-dev:2e7b5f35e9e5378a5e5662c1613b9a9e4e75785d
-  resources: {}
   containerPort: 3000
+  resources: 
+    limits:
+      cpu: 200m
+      memory: 1Gi
+    requests:
+      cpu: 50m
+      memory: 100Mi
 
-service:
-  type: NodePort
-  port: 3000
-
-hpa:
+autoscaling:
   enabled: true
-  name: cf-reporting-farmer-dev
-  maxReplicas: 4
   minReplicas: 1
-  targetCPUUtilizationPercentage: 90
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
 
-# config map is maintained seperately for security purpose
+###### config map is maintained seperately for security purpose ######
 configMap:
   enabled: true
   depname: envfile
@@ -26,7 +27,6 @@ configMap:
   fileLocation: /src/.env
   subPath: .env
   
-
 ingress:
   name: cfd-reporting-farmer-dev-ingress
   annotations: 

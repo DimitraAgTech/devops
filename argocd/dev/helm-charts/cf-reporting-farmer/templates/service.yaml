@@ -4,9 +4,9 @@ metadata:
   name: {{ .Values.deployment.name }}
   namespace: {{ .Values.deployment.namespace }}
 spec:
-  type: {{ .Values.service.type }}
+  type: NodePort
   ports:
-  - port: {{ .Values.service.port }}
+  - port: {{ .Values.deployment.containerPort }}
     protocol: TCP
     targetPort: {{ .Values.deployment.containerPort }}
   selector:

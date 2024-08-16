@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.deployment.name }}
   namespace: {{ .Values.deployment.namespace }}
 spec:
-  {{- if not .Values.hpa.enabled }}
+  {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
@@ -16,7 +16,7 @@ spec:
         app: {{ .Values.deployment.name }}
     spec:
       containers:
-      - name: {{ .Values.deployment.containerName }}
+      - name: {{ .Values.deployment.name }}
         image: {{ .Values.deployment.image }}
         imagePullPolicy: IfNotPresent
         volumeMounts:
@@ -26,9 +26,8 @@ spec:
           subPath: {{ .Values.configMap.subPath }}
           readOnly: true
         {{- end }}
-        # - mountPath: {{ .Values.deployment.aloglocation }}
-        #   name: {{ .Values.deployment.alogname }}
-        resources: {}
+        resources:
+          {{- toYaml .Values.deployment.resources | nindent 10 }}
         command: ["npm"]
         args: ["run", "start"]
         ports:
@@ -39,6 +38,3 @@ spec:
         configMap:
           name: {{ .Values.configMap.name }}
       {{- end }}
-      # - name: {{ .Values.deployment.alogname }}
-      #   persistentVolumeClaim:
-      #     claimName: {{ .Values.deployment.pvcname }}
