@@ -2,10 +2,10 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: cf-reporting-farmer-dev
-  namespace: cf-reporting-dev
+  namespace: argo
 spec:
   destination:
-    namespace: argo
+    namespace: cf-reporting-dev
     server: https://kubernetes.default.svc
   source:
     path: argocd/dev/helm-charts/cf-reporting-farmer
