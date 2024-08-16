@@ -5,9 +5,9 @@ deployment:
   image: 495454422438.dkr.ecr.us-west-1.amazonaws.com/cf-reporting-farmer-dev:2e7b5f35e9e5378a5e5662c1613b9a9e4e75785d
   containerPort: 3000
   resources: 
-    limits:
-      cpu: 500m
-      memory: 1Gi
+    # limits:
+    #   cpu: 500m
+    #   memory: 1Gi
     requests:
       cpu: 50m
       memory: 100Mi
