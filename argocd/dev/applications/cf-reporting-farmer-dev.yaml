@@ -8,7 +8,7 @@ spec:
     namespace: argo
     server: https://kubernetes.default.svc
   source:
-    path: argocd/dev/helm-charts/argo
+    path: argocd/dev/helm-charts/cf-reporting-farmer
     repoURL: https://github.com/DimitraAgTech/devops
     targetRevision: main
     helm:
