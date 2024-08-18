@@ -28,7 +28,7 @@ configMap:
   subPath: .env
   
 ingress:
-  name: cfd-reporting-farmer-dev-ingress
+  name: cf-reporting-farmer-dev-ingress
   annotations: 
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/group.name: dimitra-dev
