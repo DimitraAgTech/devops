@@ -4,7 +4,9 @@ metadata:
   name: cf-reporting-farmer-dev
   namespace: argocd
   annotations:
-    argocd-notifications.argoproj.io/subscribe.on-sync-succeeded.slack: 'argocd-dev-alerts'
+    notifications.argoproj.io/subscribe.on-deployed.slack: 'argocd-dev-alerts'
+    notifications.argoproj.io/subscribe.on-sync-succeeded.slack: 'argocd-dev-alerts'
+    notifications.argoproj.io/subscribe.on-sync-failed.slack: 'argocd-dev-alerts'
 spec:
   destination:
     namespace: cf-reporting-dev
