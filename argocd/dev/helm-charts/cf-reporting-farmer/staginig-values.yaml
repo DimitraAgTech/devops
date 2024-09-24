@@ -1,0 +1,40 @@
+deployment:
+  name: cf-reporting-farmer-staging
+  namespace: cf-reporting-staging
+  replicaCount: 1
+  image: 495454422438.dkr.ecr.us-west-1.amazonaws.com/cf-reporting-farmer-staging:c5b40978bb5078f04f858910d4f38f142f5f407b
+  containerPort: 3000
+  resources: 
+    limits:
+      cpu: 2
+      memory: 2Gi
+    requests:
+      cpu: 50m
+      memory: 100Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 1
+  targetCPUUtilizationPercentage: 90
+  targetMemoryUtilizationPercentage: 90
+
+###### config map is maintained seperately for security purpose ######
+configMap:
+  enabled: true
+  depname: envfile
+  name: sass-env-farmer-file
+  fileLocation: /src/.env
+  subPath: .env
+  
+ingress:
+  name: cf-reporting-farmer-staging-ingress
+  annotations: 
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/group.name: dimitra-dev
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-west-1:495454422438:certificate/2fb9804e-a747-4518-a496-9572d5de4ae6
+    alb.ingress.kubernetes.io/backend-protocol: HTTP
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}, {"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/actions.ssl-redirect: '{"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}'
+  hostName: cf-reporting-staging.dimitra.dev
