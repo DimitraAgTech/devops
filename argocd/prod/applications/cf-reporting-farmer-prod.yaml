@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cf-reporting-farmer-prod
+  namespace: argocd
+  # annotations:
+  #   notifications.argoproj.io/subscribe.on-deployed.slack: argocd-prod-alerts
+  #   notifications.argoproj.io/subscribe.on-sync-succeeded.slack: argocd-prod-alerts
+  #   notifications.argoproj.io/subscribe.on-sync-failed.slack: argocd-prod-alerts
+spec:
+  destination:
+    namespace: cf-reporting-prod
+    server: https://kubernetes.default.svc
+  source:
+    path: argocd/prod/helm-charts/cf-reporting-farmer
+    repoURL: https://github.com/DimitraAgTech/devops
+    targetRevision: main
+    helm:
+      valueFiles:
+        - prod-values.yaml
+  project: prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

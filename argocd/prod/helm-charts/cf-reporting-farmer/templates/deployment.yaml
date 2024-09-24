@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.name }}
+  namespace: {{ .Values.deployment.namespace }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      app: {{ .Values.deployment.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deployment.name }}
+    spec:
+      containers:
+      - name: {{ .Values.deployment.name }}
+        image: {{ .Values.deployment.image }}
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        {{- if .Values.configMap.enabled }}
+        - name: {{ .Values.configMap.depname }}
+          mountPath: {{ .Values.configMap.fileLocation }}
+          subPath: {{ .Values.configMap.subPath }}
+          readOnly: true
+        {{- end }}
+        resources:
+          {{- toYaml .Values.deployment.resources | nindent 10 }}
+        command: ["npm"]
+        args: ["run", "start"]
+        ports:
+        - containerPort: {{ .Values.deployment.containerPort }}
+      volumes:
+      {{- if .Values.configMap.enabled }}
+      - name: {{ .Values.configMap.depname }}
+        configMap:
+          name: {{ .Values.configMap.name }}
+      {{- end }}
