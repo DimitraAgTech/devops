@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cf-reporting-farmer-staging
+  name: cf-reporting-farmer-pre-prod
   namespace: argocd
   annotations:
     notifications.argoproj.io/subscribe.on-deployed.slack: argocd-dev-alerts
@@ -9,7 +9,7 @@ metadata:
     notifications.argoproj.io/subscribe.on-sync-failed.slack: argocd-dev-alerts
 spec:
   destination:
-    namespace: cf-reporting-staging
+    namespace: cf-reporting-pre-prod
     server: https://kubernetes.default.svc
   source:
     path: argocd/dev/helm-charts/cf-reporting-farmer
@@ -17,7 +17,7 @@ spec:
     targetRevision: main
     helm:
       valueFiles:
-        - staging-values.yaml
+        - pre-prod-values.yaml
   project: dev
   syncPolicy:
     automated:
