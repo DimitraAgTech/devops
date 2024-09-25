@@ -2,7 +2,7 @@ deployment:
   name: cf-reporting-farmer-pre-prod
   namespace: cf-reporting-pre-prod
   replicaCount: 1
-  image: 495454422438.dkr.ecr.us-west-1.amazonaws.com/cf-reporting-farmer-pre-prod:c5b40978bb5078f04f858910d4f38f142f5f407b
+  image: 495454422438.dkr.ecr.us-west-1.amazonaws.com/cf-reporting-farmer-pre-prod:aecb8ba47e067a8de846348eb3add1dbfeb354a3
   containerPort: 3000
   resources: 
     limits:
