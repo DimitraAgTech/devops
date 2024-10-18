@@ -2,7 +2,7 @@ deployment:
   name: cf-reporting-farmer-dev
   namespace: cf-reporting-dev
   replicaCount: 1
-  image: 495454422438.dkr.ecr.us-west-1.amazonaws.com/cf-reporting-farmer-dev:56442ebf5e25d8f8aa448dfca8fcb3b6d36ac48a
+  image: 495454422438.dkr.ecr.us-west-1.amazonaws.com/cf-reporting-farmer-dev:87a4e5ddefb09681a857760d2337bb44243333e3
   containerPort: 3000
   resources: 
     limits:
