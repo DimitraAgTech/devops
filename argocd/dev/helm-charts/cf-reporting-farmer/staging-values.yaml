@@ -2,7 +2,7 @@ deployment:
   name: cf-reporting-farmer-staging
   namespace: cf-reporting-staging
   replicaCount: 1
-  image: 495454422438.dkr.ecr.us-west-1.amazonaws.com/cf-reporting-farmer-staging:b1170c01c575a90f01140dbb54f269ea44c3f38c
+  image: 495454422438.dkr.ecr.us-west-1.amazonaws.com/cf-reporting-farmer-staging:c1f88fced7ad0e9b58120a39eb4b95cdd3a4091a
   containerPort: 3000
   resources: 
     limits:
