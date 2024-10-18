@@ -1,6 +1,6 @@
 deployment:
   name: cf-reporting-farmer-pre-prod-hotfix
-  namespace: cf-reporting-pre-prod
+  namespace: cf-reporting-pre-prod-hotfix
   replicaCount: 1
   image: 495454422438.dkr.ecr.us-west-1.amazonaws.com/cf-reporting-farmer-pre-prod-hotfix:f772752680da5dbd98299f763c067f49329ec1e0
   containerPort: 3000
